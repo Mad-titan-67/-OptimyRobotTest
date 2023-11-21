@@ -23,13 +23,13 @@ This Robot Framework script automates the submission of a new application on a w
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/yourusername/robot-framework-application-test.git
+    git clone https://github.com/yourusername/-OptimyRobotTest.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd robot-framework-application-test
+    cd -OptimyRobotTest
     ```
 
 3. Execute the Robot Framework script:
@@ -44,10 +44,6 @@ This Robot Framework script automates the submission of a new application on a w
 1. **Credentials**: Update the `${USERNAME}` and `${PASSWORD}` variables in the `SubmitApplicationTest.robot` file with valid credentials.
 
 2. **Web Browser**: The script is configured to run on Chrome by default. You can change the browser by modifying the `Open Browser` keyword in the test.
-
-## Tags
-- `smoke`: Marks tests suitable for smoke testing.
-- `regression`: Marks tests suitable for regression testing.
 
 ## Author
 Punith T
