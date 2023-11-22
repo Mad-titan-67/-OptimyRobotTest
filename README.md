@@ -16,8 +16,14 @@ This Robot Framework script automates the submission of a new application on a w
     ```bash
     pip install robotframework-seleniumlibrary
     ```
+    
+4. [SeleniumLibrary](https://github.com/robotframework/SeleniumLibrary) installed. Install it using:
 
-4. [ChromeDriver](https://sites.google.com/chromium.org/driver/) installed and added to your system's PATH.
+    ```bash
+    pip install robotframework-autoitlibrary
+    ```
+
+5. [ChromeDriver](https://sites.google.com/chromium.org/driver/) installed and added to your system's PATH.
 
 ## Usage
 1. Clone this repository:
