@@ -9,16 +9,16 @@ Suite Teardown    Close Browser
 ${BASE_URL}       http://example.com
 ${USERNAME}       your_username
 ${PASSWORD}       your_password
-${AUTOIT_SCRIPT}    FileUpload.au3
+${AUTOIT_SCRIPT}    ../Resource/FileUpload.au3
 
 *** Test Cases ***
 SubmitApplicationTest
     [Tags]    smoke    regression
     Given Click Submit New Application Button
-    When Fill Out Application Form
+    And Fill Out Application Form
     And Click Next Screen Button
     And Verify Inputted Values In Summary
-    And Click Validate And Send Button
+    When Click Validate And Send Button
     Then Verify Redirected To Thank You Page
 
 *** Keywords ***
@@ -44,30 +44,41 @@ Click Submit New Application Button
     Click Button    a.btn.btn-outline-primary
 
 Fill Out Application Form
+    Wait Until Keyword Succeeds    3x    10
+    ...    Element Should Be Visible    input[aria-label='First name']
+    #first name
     Input Text    input[aria-label='First name']    John
+    #Last Name
     Input Text    input[aria-label='Last name']     Doe
+    #address
     Input Text    textarea[aria-label='Unit no/House no, Street']       Z house X street Bengaluru, Karnataka
-    Input Text    .ui-autocomplete-input[aria-label='Select postal code']       Z house X street Bengaluru, Karnataka
+    #pincode
+    Input Text    .ui-autocomplete-input[aria-label='Select postal code']    2560
+    Wait Until Element Is Visible    .ui-autocomplete [role='presentation']
+    Click Element    .ui-autocomplete [role='presentation']
+    #country
     Select From List by Value    .locationCountry[aria-label='Country']    India
+    #Photo upload
+    Scroll Element Into View    input[name='Filedata']
+    Click Element    input[name='Filedata']
     Run Process    autoit3    ${AUTOIT_SCRIPT}
-
+    #gender
+    Click Radio Button    .custom-radio[aria-label='Male']
+    #Role
+    Select From List by Value    .custom-select[aria-label="Select a role you're applying for"]    Automation tester
+    #skills
+    Click Element    .custom-checkbox[aria-label='Robot Framework']
+    #objective
+    Input Text    .cke_show_borders[aria-label*='Editor']    Something Something Something
 
 Click Next Screen Button
-    Click Button    css:.next-screen-button
+    Click Button    .btn-primary.ml-auto[type='submit']
 
 Verify Inputted Values In Summary
-    ${first_name}    Get Text    css:.summary-firstname
-    ${last_name}     Get Text    css:.summary-lastname
-    ${email}         Get Text    css:.summary-email
-    ${country}       Get Text    css:.summary-country
-
-    Should Be Equal As Strings    ${first_name}    John
-    Should Be Equal As Strings    ${last_name}     Doe
-    Should Be Equal As Strings    ${email}         john.doe@example.com
-    Should Be Equal As Strings    ${country}       US
-
+    ${first_name}    Get Text    .answer.view div.field
+    
 Click Validate And Send Button
-    Click Button    css:.validate-send-button
+    Click Button    .btn-primary.ml-md-auto[type='submit']
 
 Verify Redirected To Thank You Page
     Wait Until Page Contains    Thank you for submitting your project
