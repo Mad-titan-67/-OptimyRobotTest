@@ -17,7 +17,7 @@ This Robot Framework script automates the submission of a new application on a w
     pip install robotframework-seleniumlibrary
     ```
     
-4. [SeleniumLibrary](https://github.com/robotframework/SeleniumLibrary) installed. Install it using:
+4. [AutoItLibrary](https://github.com/nokia/robotframework-autoitlibrary) installed. Install it using:
 
     ```bash
     pip install robotframework-autoitlibrary
